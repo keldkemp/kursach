@@ -26,7 +26,7 @@ SECRET_KEY = 'md%5jch7fo6_&^&hdrvjyikl#84210@g4evm@d1l_-25ccbmx4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'kagent.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'kagent.herokuapp.com']
 
 
 # Application definition
