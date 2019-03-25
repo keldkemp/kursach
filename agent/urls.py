@@ -12,5 +12,6 @@ agent_urlpatterns = ([
 ], 'client')
 
 urlpatterns = [
-    path('', include(agent_urlpatterns))
+    path('client/', include(agent_urlpatterns)),
+    path('', client.redirect),
 ]

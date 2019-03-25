@@ -46,3 +46,7 @@ class Detail(DetailView):
     model = Client
     template_name = 'agent/client/detail.html'
     #permission_required = 'client'
+
+
+def redirect(request):
+    return HttpResponseRedirect('client/')
