@@ -1,0 +1,17 @@
+{% load static html_helper %}
+<nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
+  <div class="sidebar-sticky">
+    <ul class="navbar-nav flex-column">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="
+            {% url 'client:client_list' %}"
+          name="Клиенты"
+        >
+          Клиенты
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

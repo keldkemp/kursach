@@ -1,0 +1,84 @@
+{% extends "agent/bars/base.html" %}
+
+{% load bootstrap4 html_helper %}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block content %}
+
+  <script language="javascript">
+    $(function () {
+      $("#clear-search").click(function (e) {
+        $('#' + $(this).data('search-id')).val('');
+        $(this).parents('form').submit();
+      });
+    });
+  </script>
+
+
+  <div class="ml-4 mt-4 mr-4 container-fluid">
+    <legend class="border-bottom mb-2">Клиенты</legend>
+    <div style="background-color: #FFFFFF;" class="sticky-top">
+      <div class="row">
+        <div class="col-md-6">
+          <form class="form-inline mb-2"
+                action="{% url 'client:client_list' %}" method="GET">
+          <a name="add-new"
+             href="{% url 'client:client_new' %}"
+             class="btn btn-sm btn-info"
+          >
+            Добавить клиента
+          </a>
+         <div class="input-group  ml-2 w-50">
+              <input
+                id="{{ filter.form.name.id_for_label }}"
+                name="{{ filter.form.name.name }}"
+                placeholder="{{ filter.form.name.label }}"
+                value="{{ filter.form.name.data|default_if_none:'' }}"
+                type="search"
+                class="form-control form-control-sm"
+              >
+              <div class="input-group-append">
+                <a
+                  href="#"
+                  id="clear-search"
+                  class="btn btn-sm btn-outline-danger"
+                  data-search-id="{{ filter.form.name.id_for_label }}"
+                >
+                  <i class="fas fa-times"></i>
+                </a>
+              </div>
+            </div>
+
+            <input type="submit"
+                   value="Поиск" class=" ml-2 btn btn-sm btn-success"/>
+          </form>
+        </div>
+      </div>
+    </div>
+
+      <table class="table table-sm table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Информация</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for client in clients %}
+        <tr>
+            <td>
+            <a href="{% url 'client:client_detail' client.id %}">
+              <div class="font-weight-bold">{{ client.name }}</div>
+              <div>{{ client.phone_number }}</div>
+              <div>{{ client.email }}</div>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+
+      {% bootstrap_pagination page_obj extra=filter.data.urlencode %}
+  </div>
+{% endblock %}
