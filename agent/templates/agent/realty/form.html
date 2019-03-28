@@ -8,16 +8,9 @@
 {% endblock %}
 
 {% block content %}
-<script>
-
-    $(document).ready(function() {
-        $("#id_phone_number").inputmask({"mask": "+7 (999) 999-99-99"});
-    });
-
-</script>
 
 <div class="container-fluid mt-4 ml-2">
-    <legend class="border-bottom mb-2">Клиент</legend>
+    <legend class="border-bottom mb-2">Недвижимость</legend>
     <div id="alert" class="alert alert-danger" style="display: none" role="alert"></div>
     <div class="w-25">
         <form method="POST">
@@ -27,7 +20,7 @@
                 <button class="btn btn-outline-info" type="submit">Добавить</button>
                 <a
                   name="cancel"
-                  href="{% if object.id %}{% url 'client:client_detail' object.id %}{% else %}{% url 'client:client_list' %}{% endif %}"
+                  href="{% if object.id %}{% url 'realty:realty_detail' object.id %}{% else %}{% url 'realty:realty_list' %}{% endif %}"
                   class="btn btn-outline-info">
                       Назад
                 </a>

@@ -17,3 +17,14 @@ class ClientFilter(django_filters.FilterSet):
     class Meta:
         model = models.Client
         fields = ('name',)
+
+
+class RealtyFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(
+        label='Поиск недвижимости',
+        lookup_expr='icontains'
+    )
+
+    class Meta:
+        model = models.Realty
+        fields = ('name',)

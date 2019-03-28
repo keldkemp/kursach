@@ -1,0 +1,73 @@
+{% extends "agent/bars/base.html" %}
+
+
+{% block nav %}
+{% endblock nav %}
+
+
+{% block content %}
+
+
+<div class="container-fluid mt-4 ml-2">
+    <legend class="mb-2">{{ object.name }}</legend>
+    <div class="row border-top mb-2">
+      <div class="container-fluid mt-1">
+          <a
+            class="btn btn-sm btn-outline-info"
+            href="{% url 'realty:realty_update' object.id %}"
+          >Изменить</a>
+        <a
+          name="cancel" href="{% url 'realty:realty_list' %}"
+          class="btn btn-sm btn-outline-info"
+        >Назад</a>
+          <a
+            class="btn btn-sm btn-outline-danger"
+            href="{% url 'realty:realty_delete' object.id %}"
+          >Удалить</a>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border-right">
+            {% if object.address %}
+                <div class="font-weight-bold">Адрес:</div>
+            {% endif %}
+            {% if object.square %}
+                <div class="font-weight-bold">Площадь:</div>
+            {% endif %}
+            {% if object.floor %}
+                <div class="font-weight-bold">Этаж:</div>
+            {% endif %}
+            {% if object.rooms %}
+                <div class="font-weight-bold">Кол-во комнат:</div>
+            {% endif %}
+            {% if object.client_price %}
+                <div class="font-weight-bold">Стоимость:</div>
+            {% endif %}
+        </div>
+        <div class="col">
+            <div>{{ object.address }} </div>
+            {% if object.square %}
+                <div>{{ object.square }} кв.м </div>
+            {% endif %}
+            {% if object.floor %}
+                <div>{{ object.floor }}-й</div>
+            {% endif %}
+            {% if object.rooms %}
+                <div>{{ object.rooms }}  комнаты</div>
+            {% endif %}
+            <div>{{ object.client_price }} ₽</div>
+        </div>
+    </div>
+    {% if object.description %}
+            <div class="card w-50" style="margin-top: 50px;">
+                <h5 class="card-header text-center">
+                    Описание
+                </h5>
+                <div style="card-body">
+                    <pre class="card-text">{{ object.description }} </pre>
+                </div>
+            </div>
+            {% endif %}
+  </div>
+
+{% endblock content %}
