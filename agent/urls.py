@@ -1,6 +1,25 @@
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
-from agent.views import client, realty
+from agent.views import client, realty, auth
+
+auth_urlpatterns = ([
+    path('', auth.AgentLoginRedirectView.as_view()),
+    path(
+        'login/',
+        auth_views.LoginView.as_view(template_name='agent/auth/login.html'),
+        name='agent_login'
+    ),
+    path('logout/', auth_views.LogoutView.as_view(), name='agent_logout'),
+    path(
+        'redirect/',
+        auth.AgentLoginRedirectView.as_view(),
+        name='login-redirect'
+    ),
+    path('profile/', auth.ProfileView.as_view(), name='agent_profile'),
+
+], 'accounts')
+
 
 agent_urlpatterns = ([
     path('', client.List.as_view(), name='client_list'),
@@ -20,7 +39,8 @@ realty_urlpatterns = ([
 ], 'realty')
 
 urlpatterns = [
+    path('accounts/', include(auth_urlpatterns)),
     path('realty/', include(realty_urlpatterns)),
     path('client/', include(agent_urlpatterns)),
-    path('', client.redirect),
+    path('', auth.AgentLoginRedirectView.as_view()),
 ]

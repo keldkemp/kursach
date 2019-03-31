@@ -1,6 +1,6 @@
 {
-    "name": "Agent",
-    "short_name": "Agent",
+    "name": "Manager",
+    "short_name": "Manager",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
