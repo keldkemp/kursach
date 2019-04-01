@@ -3,10 +3,12 @@
 {% load bootstrap4 %}
 
 {% block extrahead %}
-<script
+ <script
     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"
-></script>
+  ></script>
   <script type="text/javascript">
+      $(function () {
+
       $('[data-name-edit]').on('input', function () {
         let data = $(this).val().trim();
         let items = data.split(' ');
@@ -15,6 +17,8 @@
         $('#' + '{{ form.user.first_name.id_for_label }}').val(result[0]);
         $('#' + '{{ form.user.last_name.id_for_label }}').val(result[1]);
       });
+    });
+
        $(document).ready(function() {
         $("#id_detail-phone_number").inputmask({"mask": "+7 (999) 999-99-99"});
       });
@@ -34,7 +38,14 @@
       {% bootstrap_field form.user.email %}
       {% bootstrap_form form.detail show_help=False %}
 
-      <input type="submit" value="Сохранить" class="btn btn-primary">
+      <input type="submit" value="Сохранить" class="btn btn-success">
+
+      {% if user.has_usable_password %}
+        <a
+          href="{% url 'accounts:agent_password-change' %}"
+          class="btn btn-outline-danger"
+        >Сменить пароль</a>
+      {% endif %}
 
     </form>
   </div>

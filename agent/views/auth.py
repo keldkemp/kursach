@@ -1,7 +1,6 @@
-from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse, reverse_lazy
-from django.utils.safestring import mark_safe
 from django.views.generic import (
     RedirectView, TemplateView, UpdateView,
 )
@@ -20,6 +19,11 @@ class AgentLoginRedirectView(RedirectView):
             return reverse('client:client_list')
         else:
             return reverse('accounts:agent_login')
+
+
+class PasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    success_url = reverse_lazy('accounts:agent_profile')
+    template_name = 'agent/auth/password-change.html'
 
 
 class ProfileView(PermissionRequiredMixin, UpdateView):

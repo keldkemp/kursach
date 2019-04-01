@@ -58,7 +58,8 @@ class ProfileUserForm(forms.ModelForm):
         fields = ('username', 'first_name', 'last_name', 'email')
         widgets = {
             'first_name': forms.HiddenInput(),
-            'last_name': forms.HiddenInput()
+            'last_name': forms.HiddenInput(),
+            'email': forms.TextInput(attrs={"class": "form-control", "placeholder": "example@email.com"}),
         }
         labels = {
             'username': 'Логин'

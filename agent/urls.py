@@ -16,6 +16,11 @@ auth_urlpatterns = ([
         auth.AgentLoginRedirectView.as_view(),
         name='login-redirect'
     ),
+    path(
+        'password-change/',
+        auth.PasswordChangeView.as_view(),
+        name='agent_password-change'
+    ),
     path('profile/', auth.ProfileView.as_view(), name='agent_profile'),
 
 ], 'accounts')
