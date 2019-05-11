@@ -3,7 +3,19 @@
 <nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
   <div class="sidebar-sticky">
     <ul class="navbar-nav flex-column">
+      {% if user.is_manager %}
       <li class="nav-item">
+        <a
+          class="btn btn-outline-secondary btn-lg btn-block"
+          href="
+            {% url 'realty_type:realty_type_list' %}"
+          name="Тип недвижимости"
+        >
+          Тип недвижимости
+        </a>
+      </li>
+      {% endif %}
+      <li class="nav-item" style="margin-top: 8px;">
         <a
           class="btn btn-outline-secondary btn-lg btn-block"
           href="
@@ -21,6 +33,28 @@
           name="Клиенты"
         >
           Клиенты
+        </a>
+      </li>
+      {% if user.is_manager %}
+      <li class="nav-item" style="margin-top: 8px;">
+        <a
+          class="btn btn-outline-secondary btn-lg btn-block"
+          href="
+            {% url 'service:service_list' %}"
+          name="Клиенты"
+        >
+          Услуги
+        </a>
+      </li>
+      {% endif %}
+      <li class="nav-item" style="margin-top: 8px;">
+        <a
+          class="btn btn-outline-secondary btn-lg btn-block"
+          href="
+            {% url 'request:list' %}"
+          name="Клиенты"
+        >
+          Заявки
         </a>
       </li>
     </ul>

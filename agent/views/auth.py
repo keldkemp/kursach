@@ -17,6 +17,8 @@ class AgentLoginRedirectView(RedirectView):
             return reverse('admin:index')
         elif self.request.user.is_agent:
             return reverse('client:client_list')
+        elif self.request.user.is_manager:
+            return reverse('client:client_list')
         else:
             return reverse('accounts:agent_login')
 
@@ -35,7 +37,7 @@ class ProfileView(PermissionRequiredMixin, UpdateView):
         return self.request.user
 
     def get_form_class(self):
-        if self.request.user.is_agent:
+        if self.request.user.is_agent or self.request.user.is_manager:
             return ProfileManagerForm
         else:
             return reverse('accounts:agent_login')
@@ -46,5 +48,7 @@ class ProfileView(PermissionRequiredMixin, UpdateView):
             'user': self.object,
             'detail':
                 self.object.manager
+                if self.object.is_agent
+                else self.object.agentmanager,
         })
         return kwargs

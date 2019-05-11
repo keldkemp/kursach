@@ -1,0 +1,87 @@
+{% extends "agent/bars/base.html" %}
+
+
+{% block nav %}
+{% endblock nav %}
+
+
+{% block content %}
+
+
+<div class="container-fluid mt-4 ml-2">
+    <legend class="mb-2">Заявка</legend>
+    <div class="row border-top mb-2">
+      <div class="container-fluid mt-1">
+          {% if not object.closed %}
+          <a
+            class="btn btn-sm btn-outline-info"
+            href="{% url 'request:update' object.id %}"
+          >Изменить</a>
+          {% endif %}
+        <a
+          name="cancel" href="{% url 'request:list' %}"
+          class="btn btn-sm btn-outline-info"
+        >Назад</a>
+          <a
+            class="btn btn-sm btn-outline-danger"
+            href="{% url 'request:delete' object.id %}"
+          >Удалить</a>
+          {% if not object.closed %}
+          <a
+            class="btn btn-sm btn-outline-danger"
+            href="{% url 'request:closed' object.id %}"
+          >Закрыть заявку</a>
+          {% endif %}
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border-right">
+            {% if object.id %}
+                <div class="font-weight-bold">Номер:</div>
+            {% endif %}
+            {% if object.realty %}
+                <div class="font-weight-bold">Недвижимость:</div>
+            {% endif %}
+            {% if object.worker %}
+                <div class="font-weight-bold">Менеджер:</div>
+            {% endif %}
+            {% if object.client_sell %}
+                <div class="font-weight-bold">Клиент:</div>
+            {% endif %}
+            {% if object.client_buy %}
+                <div class="font-weight-bold">Покупатель:</div>
+            {% endif %}
+            {% if object.service %}
+                <div class="font-weight-bold">Стоимость:</div>
+            {% endif %}
+            {% if object.date_from %}
+                <div class="font-weight-bold">Дата открытия:</div>
+            {% endif %}
+            {% if object.date_to %}
+                <div class="font-weight-bold">Дата закрытия:</div>
+            {% endif %}
+        </div>
+        <div class="col">
+            <div>{{ object.id }} </div>
+            <a href="{% url 'realty:realty_detail' object.realty.id %}">
+                <div>{{ object.realty }} </div>
+            </a>
+            <div>{{ object.worker }} </div>
+            <a href="{% url 'client:client_detail' object.client_sell.id %}">
+                <div>{{ object.client_sell }} </div>
+            </a>
+            {% if object.client_buy %}
+            <a href="{% url 'client:client_detail' object.client_buy.id %}">
+                <div>{{ object.client_buy }} </div>
+            </a>
+            {% endif %}
+            <div>{{ object.get_full_price }} </div>
+            <div>{{ object.date_from }} </div>
+            {% if object.date_to %}
+                <div>{{ object.date_to }} </div>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+
+{% endblock content %}

@@ -28,11 +28,17 @@
     </div>
     <div class="row">
         <div class="col-3 border-right">
+            {% if object.realty_type %}
+                <div class="font-weight-bold">Тип недвижимости:</div>
+            {% endif %}
             {% if object.address %}
                 <div class="font-weight-bold">Адрес:</div>
             {% endif %}
             {% if object.square %}
                 <div class="font-weight-bold">Площадь:</div>
+            {% endif %}
+            {% if object.land %}
+                <div class="font-weight-bold">Земля:</div>
             {% endif %}
             {% if object.floor %}
                 <div class="font-weight-bold">Этаж:</div>
@@ -45,9 +51,13 @@
             {% endif %}
         </div>
         <div class="col">
+            <div>{{  object.realty_type }} </div>
             <div>{{ object.address }} </div>
             {% if object.square %}
                 <div>{{ object.square }} кв.м </div>
+            {% endif %}
+            {% if object.land %}
+            <div>{{ object.land }} соток </div>
             {% endif %}
             {% if object.floor %}
                 <div>{{ object.floor }}-й</div>

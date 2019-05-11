@@ -1,0 +1,41 @@
+{% extends "agent/bars/base.html" %}
+
+
+{% block nav %}
+{% endblock nav %}
+
+
+{% block content %}
+
+
+<div class="container-fluid mt-4 ml-2">
+    <legend class="mb-2">{{ object.name }}</legend>
+    <div class="row border-top mb-2">
+      <div class="container-fluid mt-1">
+          <a
+            class="btn btn-sm btn-outline-info"
+            href="{% url 'service:service_update' object.id %}"
+          >Изменить</a>
+        <a
+          name="cancel" href="{% url 'service:service_list' %}"
+          class="btn btn-sm btn-outline-info"
+        >Назад</a>
+          <a
+            class="btn btn-sm btn-outline-danger"
+            href="{% url 'service:service_delete' object.id %}"
+          >Удалить</a>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-3 border-right">
+            {% if object.price %}
+                <div class="font-weight-bold">Стоимость:</div>
+            {% endif %}
+        </div>
+        <div class="col">
+            <div>{{ object.price }} %</div>
+        </div>
+    </div>
+  </div>
+
+{% endblock content %}

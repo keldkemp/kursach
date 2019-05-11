@@ -4,7 +4,7 @@ from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from betterforms.multiform import MultiModelForm
 
 from .models import (
-    Client, Realty, Manager
+    Client, Realty, Manager, Service, RealtyType, Requests
 )
 
 
@@ -32,18 +32,56 @@ class RealtyForm(Base):
     class Meta:
         model = Realty
 
-        fields = ['name', 'square',
-                  'floor', 'rooms',
+        fields = ['name', 'realty_type', 'square',
+                  'land', 'floor', 'rooms',
                   'address', 'client_price',
                   'description']
         widgets = {
             'address': forms.TextInput(attrs={"class": "form-control", "placeholder": "Адрес недвижимости"}),
             'name': forms.TextInput(attrs={"class": "form-control", "placeholder": "Однокомнатная квартира, дача, вилла"}),
-            'square': forms.NumberInput(attrs={"class": "form-control", "placeholder": "15"}),
-            'floor': forms.NumberInput(attrs={"class": "form-control", "placeholder": "9"}),
-            'rooms': forms.NumberInput(attrs={"class": "form-control", "placeholder": "3"}),
+            'square': forms.NumberInput(attrs={"class": "form-control", "placeholder": "15 кв.м"}),
+            'land': forms.NumberInput(attrs={"class": "form-control", "placeholder": "15 соток"}),
+            'floor': forms.NumberInput(attrs={"class": "form-control", "placeholder": "9 этажей"}),
+            'rooms': forms.NumberInput(attrs={"class": "form-control", "placeholder": "3 комнаты"}),
             'client_price': forms.TextInput(attrs={"class": "form-control", "placeholder": "2 000 000 ₽"}),
 
+        }
+
+
+class RealtyTypeForm(Base):
+    class Meta:
+        model = RealtyType
+
+        fields = ['name']
+
+        widgets = {
+            'name': forms.TextInput(attrs={"class": "form-control", "placeholder": "Дача, квартира, земельный участок"})
+        }
+
+
+class ServiceForm(Base):
+    class Meta:
+        model = Service
+        fields = ['name', 'price']
+        widgets = {
+            'price': forms.TextInput(attrs={"class": "form-control", "placeholder": "10 %"}),
+
+        }
+
+
+class RequestForm(Base):
+    class Meta:
+        model = Requests
+        fields = ['client_sell', 'realty',
+                  'worker', 'service', 'date_from']
+
+
+class RequestClosedForm(Base):
+    class Meta:
+        model = Requests
+        fields = ['client_buy', 'date_to', 'closed']
+        widgets = {
+            'date_to': forms.TextInput(attrs={"placeholder": "27.03.2019 00:00"}),
         }
 
 

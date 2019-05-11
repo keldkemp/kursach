@@ -11,11 +11,34 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('name', 'address', 'phone_number', 'email')
 
 
+@admin.register(models.Realty)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('name', 'address', 'client_price')
+
+
+@admin.register(models.RealtyType)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(models.Service)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')
+
+
 @admin.register(models.Manager)
 class ManagerAdmin(admin.ModelAdmin):
     list_display = ('get_manager_full_name', 'user')
 
     def get_manager_full_name(self, obj: models.Manager):
+        return obj.user.get_full_name()
+
+
+@admin.register(models.AgentManager)
+class AgentManagerAdmin(admin.ModelAdmin):
+    list_display = ('get_agentmanager_full_name', 'user')
+
+    def get_agentmanager_full_name(self, obj: models.AgentManager):
         return obj.user.get_full_name()
 
 
