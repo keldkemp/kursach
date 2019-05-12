@@ -23,14 +23,30 @@
       <div class="row">
         <div class="col-md-6">
         <form class="form-inline mb-2">
+          <div class="ml-2">
+        {{ filter.form.date_from.label }}
+       {% bootstrap_field filter.form.date_from show_label=false %}
+      </div>
+          <div class="ml-2">
+        {{ filter.form.date_to.label }}
+       {% bootstrap_field filter.form.date_to show_label=false %}
+      </div>
       <div class="ml-2">
         {{ filter.form.realty.label }}
        {% bootstrap_field filter.form.realty show_label=false %}
       </div>
       <div class="ml-2">
-        {{ filter.form.client.label }}
-       {% bootstrap_field filter.form.client show_label=false %}
+        {{ filter.form.client_sell.label }}
+       {% bootstrap_field filter.form.client_sell show_label=false %}
       </div>
+          <div class="ml-2">
+        {{ filter.form.client_buy.label }}
+       {% bootstrap_field filter.form.client_buy show_label=false %}
+        </div>
+          <div class="ml-2">
+        {{ filter.form.worker.label }}
+       {% bootstrap_field filter.form.worker show_label=false %}
+        </div>
               <input type="submit"
                    value="Поиск" class="mt-4 ml-2 btn btn-success"/><br><br>
           </form>

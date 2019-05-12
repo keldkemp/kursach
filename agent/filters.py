@@ -43,7 +43,10 @@ class ServiceFilter(django_filters.FilterSet):
 
 
 class RequestFilter(django_filters.FilterSet):
-    date = django_filters.BooleanFilter(field_name='closed')
+    closed = django_filters.BooleanFilter(field_name='closed')
+
+    date_from = django_filters.DateFromToRangeFilter(field_name='date_from')
+    date_to = django_filters.DateFromToRangeFilter(field_name='date_to')
 
     realty = django_filters.ModelMultipleChoiceFilter(
         label='Недвижимость:',
@@ -51,10 +54,22 @@ class RequestFilter(django_filters.FilterSet):
         queryset=models.Realty.objects.all(),
         widget=Select2MultipleWidget
     )
-    client = django_filters.ModelMultipleChoiceFilter(
-        label='Клиент:',
+    client_sell = django_filters.ModelMultipleChoiceFilter(
+        label='Клиент-продавец:',
         field_name='client_sell__name',
         queryset=models.Client.objects.all(),
+        widget=Select2MultipleWidget
+    )
+    client_buy = django_filters.ModelMultipleChoiceFilter(
+        label='Клиент-покупатель:',
+        field_name='client_buy__name',
+        queryset=models.Client.objects.all(),
+        widget=Select2MultipleWidget
+    )
+    worker = django_filters.ModelMultipleChoiceFilter(
+        label='Сотрудник:',
+        field_name='worker_id',
+        queryset=models.Manager.objects.all(),
         widget=Select2MultipleWidget
     )
 
