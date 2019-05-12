@@ -48,5 +48,51 @@
         </div>
     </div>
   </div>
+{% if object.client_sell.count %}
+<div class="container-fluid mt-4 ml-2">
+    <legend class="mb-2">Недвижимость-продал:</legend>
+    <table class="table table-sm table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Информация</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for req in object.client_sell.all %}
+        <tr>
+            <td>
+            <a href="{% url 'realty:realty_detail' req.id %}">
+              <div class="font-weight-bold">{{ req.realty }}</div>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    {% endif %}
+</div>
+
+    {% if object.client_buy.count %}
+<div class="container-fluid mt-4 ml-2">
+    <legend class="mb-2">Недвижимость-купил:</legend>
+    <table class="table table-sm table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Информация</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for req in object.client_buy.all %}
+        <tr>
+            <td>
+            <a href="{% url 'realty:realty_detail' req.id %}">
+              <div class="font-weight-bold">{{ req.realty }}</div>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    {% endif %}
 
 {% endblock content %}

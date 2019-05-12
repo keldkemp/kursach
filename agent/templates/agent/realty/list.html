@@ -50,6 +50,10 @@
                 </a>
               </div>
             </div>
+              <div class="ml-2">
+        {{ filter.form.realty_type.label }}
+       {% bootstrap_field filter.form.realty_type show_label=false %}
+        </div>
 
             <input type="submit"
                    value="Поиск" class=" ml-2 btn btn-sm btn-success"/>
@@ -61,16 +65,27 @@
       <table class="table table-sm table-bordered">
       <thead>
       <tr>
-        <th scope="col">Информация</th>
+          <th scope="col">ID</th>
+          <th scope="col">Информация</th>
       </tr>
       </thead>
       <tbody>
       {% for realty in realtys %}
         <tr>
             <td>
+              <div class="font-weight-bold">{{ realty.id }}</div>
+          </td>
+            <td>
             <a href="{% url 'realty:realty_detail' realty.id %}">
-              <div class="font-weight-bold">{{ realty.name }}</div>
-              <div>{{ realty.address }}</div>
+                <div class="font-weight-bold">{{ realty.name }}</div>
+                <div>{{ realty.address }}</div>
+                {% if realty.requests.client_sell %}
+                    {% if realty.requests.client_buy %}
+                        <div>{{ realty.requests.client_buy }}</div>
+                    {% else %}
+                        <div>{{ realty.requests.client_sell }}</div>
+                    {% endif %}
+                {% endif %}
             </a>
           </td>
         </tr>

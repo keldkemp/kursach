@@ -49,6 +49,9 @@
             {% if object.client_price %}
                 <div class="font-weight-bold">Стоимость:</div>
             {% endif %}
+            {% if object.requests.client_sell %}
+                <div class="font-weight-bold">Владелец:</div>
+            {% endif %}
         </div>
         <div class="col">
             <div>{{  object.realty_type }} </div>
@@ -66,6 +69,17 @@
                 <div>{{ object.rooms }}  комнаты</div>
             {% endif %}
             <div>{{ object.client_price }} ₽</div>
+            {% if object.requests.client_sell %}
+                {% if object.requests.client_buy %}
+                        <a href="{% url 'client:client_detail' object.requests.client_buy.id %}">
+                        <div>{{ object.requests.client_buy }} </div>
+                        </a>
+                {% else %}
+                        <a href="{% url 'client:client_detail' object.requests.client_sell.id %}">
+                        <div>{{ object.requests.client_sell }} </div>
+                        </a>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
     {% if object.description %}

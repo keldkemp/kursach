@@ -21,6 +21,13 @@ class ClientFilter(django_filters.FilterSet):
 
 
 class RealtyFilter(django_filters.FilterSet):
+    realty_type = django_filters.ModelMultipleChoiceFilter(
+        label='Тип недвижимости:',
+        field_name='realty_type',
+        queryset=models.RealtyType.objects.all(),
+        widget=Select2MultipleWidget
+    )
+
     name = django_filters.CharFilter(
         label='Поиск недвижимости',
         lookup_expr='icontains'
