@@ -65,16 +65,12 @@
       <table class="table table-sm table-bordered">
       <thead>
       <tr>
-          <th scope="col">ID</th>
           <th scope="col">Информация</th>
       </tr>
       </thead>
       <tbody>
       {% for realty in realtys %}
         <tr>
-            <td>
-              <div class="font-weight-bold">{{ realty.id }}</div>
-          </td>
             <td>
             <a href="{% url 'realty:realty_detail' realty.id %}">
                 <div class="font-weight-bold">{{ realty.name }}</div>
