@@ -36,6 +36,7 @@ class RealtyFilter(django_filters.FilterSet):
     class Meta:
         model = models.Realty
         fields = ('id',)
+        order_by_field = 'id'
 
 
 class ServiceFilter(django_filters.FilterSet):
