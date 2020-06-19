@@ -1,1 +1,1 @@
-kursach agent
+Курсовая работа на DJANGO 2018 год
